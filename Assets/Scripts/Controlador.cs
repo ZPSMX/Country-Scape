@@ -14,32 +14,28 @@ public class Controlador : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider;
-    private bool mirandoDerecha = true;
+    public bool mirandoDerecha = true;
     private Animator animator;
-    [SerializeField] private FixedJoystick joystick;
+    [SerializeField] public FixedJoystick joystick;
     public bool botonSalto= false;
-     
 
 
-    private void Start()
-    {
-        /** rigidBody = GetComponent<Rigidbody2D>();
-         boxCollider = GetComponent<BoxCollider2D>();
-         animator = GetComponent<Animator>();**/
-       
+    
 
-
-    }
 
     // Update is called once per frame
     void Update()
     {
+
+     
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        Debug.Log(joystick.Horizontal);
        
         ProcesarMovimiento();
         ProcesarSalto();
+       
 
     }
 
@@ -86,11 +82,13 @@ public class Controlador : MonoBehaviour
         else { animator.SetBool("isRunning", false); }
 
         GestionarOrientacion(joystick.Horizontal);
+
+        
     }
 
     void GestionarOrientacion(float inputmovimiento)
     {
-        //Si se cumple condicióm
+        //Si se cumple condición
         if ((mirandoDerecha == true && inputmovimiento < 0) || (mirandoDerecha == false && inputmovimiento > 0))
         {
             //Ejecutar codigo de volteado 
