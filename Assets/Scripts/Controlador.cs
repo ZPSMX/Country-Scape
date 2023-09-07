@@ -18,6 +18,9 @@ public class Controlador : MonoBehaviour
     private Animator animator;
     [SerializeField] public FixedJoystick joystick;
     public bool botonSalto= false;
+    public float fuerzaGolpe;
+    private bool puedeMoverse =true;
+
 
 
     
@@ -27,7 +30,6 @@ public class Controlador : MonoBehaviour
     void Update()
     {
 
-     
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
@@ -56,11 +58,17 @@ public class Controlador : MonoBehaviour
     }
     void ProcesarMovimiento()
     {
+       
+        //revisar variable y condicion de movimiento
+        if (!puedeMoverse)
+        {return;}
+
         //Logica de Movimiento PC
         float inputMovimiento = Input.GetAxis("Horizontal");
 
 
-        /** if (inputMovimiento != 0)
+        /** logica movimiento PC
+         if (inputMovimiento != 0)
          {
              animator.SetBool("isRunning",true);
          }
@@ -109,4 +117,32 @@ public class Controlador : MonoBehaviour
 
     }
 
-}
+   public void AplicarGolpe()
+    {
+       Vector2 direccionGolpe;
+       puedeMoverse= false;
+
+        if (rigidBody.velocity.x > 0)
+        {
+            direccionGolpe = new Vector2(-1, 1);
+        }
+        else
+        {
+            direccionGolpe = new Vector2(1, 1);
+        }
+
+        rigidBody.AddForce(direccionGolpe * fuerzaGolpe);
+
+        StartCoroutine(EsperarYActivarMovimiento());
+    }
+   IEnumerator EsperarYActivarMovimiento()
+    {
+        //esperar antes de comprobar
+        yield return new WaitForSeconds(0.1f);
+        while (!EstaenSuelo()) {
+            yield return null;
+        }
+
+        puedeMoverse = true;
+    }
+    }
