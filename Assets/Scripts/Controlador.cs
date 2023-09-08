@@ -60,8 +60,7 @@ public class Controlador : MonoBehaviour
     {
        
         //revisar variable y condicion de movimiento
-        if (!puedeMoverse)
-        {return;}
+        if (!puedeMoverse) return;
 
         //Logica de Movimiento PC
         float inputMovimiento = Input.GetAxis("Horizontal");
@@ -119,18 +118,20 @@ public class Controlador : MonoBehaviour
 
    public void AplicarGolpe()
     {
-       Vector2 direccionGolpe;
+       
        puedeMoverse= false;
+        Vector2 direccionGolpe;
 
-        if (rigidBody.velocity.x > 0)
+        if (joystick.Horizontal > 0)
         {
-            direccionGolpe = new Vector2(-1, 1);
+            direccionGolpe = new Vector2(-1,1);
         }
         else
         {
-            direccionGolpe = new Vector2(1, 1);
+            direccionGolpe = new Vector2(1,1);
         }
 
+        
         rigidBody.AddForce(direccionGolpe * fuerzaGolpe);
 
         StartCoroutine(EsperarYActivarMovimiento());
