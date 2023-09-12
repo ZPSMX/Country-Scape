@@ -20,6 +20,7 @@ public class Controlador : MonoBehaviour
     public bool botonSalto= false;
     public float fuerzaGolpe;
     private bool puedeMoverse =true;
+    public ParticleSystem particulas;
 
 
 
@@ -56,7 +57,10 @@ public class Controlador : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && EstaenSuelo())
         {
             rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
+            
+
         }
+        
     }
     void ProcesarMovimiento()
     {
@@ -87,8 +91,11 @@ public class Controlador : MonoBehaviour
         if (joystick.Horizontal != 0)
         {
             animator.SetBool("isRunning", true);
+            particulas.Play();
         }
-        else { animator.SetBool("isRunning", false); }
+        else { animator.SetBool("isRunning", false);
+            particulas.Stop();
+        }
 
         GestionarOrientacion(joystick.Horizontal);
 
