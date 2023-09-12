@@ -51,6 +51,8 @@ public class Controlador : MonoBehaviour
 
     void ProcesarSalto()
     {
+
+        if (!puedeMoverse) return;
         if (Input.GetKeyDown(KeyCode.Space) && EstaenSuelo())
         {
             rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
@@ -106,7 +108,8 @@ public class Controlador : MonoBehaviour
     }
 
     public void androidSaltar() {
-        
+        if (!puedeMoverse) return;
+
         botonSalto = true;
 
         if (botonSalto==true && EstaenSuelo())
