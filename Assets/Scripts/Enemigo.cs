@@ -8,6 +8,8 @@ public class Enemigo : MonoBehaviour
     private bool puedeAtacar = true;
     public float cooldownAtaque;
     private SpriteRenderer spriteRenderer;
+    public ParticleSystem particulasEnemigo;
+    
 
     void Start()
     {
@@ -31,9 +33,12 @@ public class Enemigo : MonoBehaviour
             GameManager.Instance.PerderVidas();
             //aplicamos golpe al personaje
             other.gameObject.GetComponent<Controlador>().AplicarGolpe();
+            particulasEnemigo.Play();
+            
 
              Invoke("ReactivarAtaque", cooldownAtaque);
-        } 
+
+        }  
     }
 
     void ReactivarAtaque()
