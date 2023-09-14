@@ -109,7 +109,8 @@ public class Controlador : MonoBehaviour
         {
             //Ejecutar codigo de volteado 
             mirandoDerecha = !mirandoDerecha;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+          //girado general para objetos dentro de jugador
+            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y+180,0);
         }
 
     }

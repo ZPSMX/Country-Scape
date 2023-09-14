@@ -9,6 +9,9 @@ public class Enemigo : MonoBehaviour
     public float cooldownAtaque;
     private SpriteRenderer spriteRenderer;
     public ParticleSystem particulasEnemigo;
+
+   [SerializeField] private float vida;
+    private GameObject efectoMuerte;
     
 
     void Start()
@@ -49,5 +52,19 @@ public class Enemigo : MonoBehaviour
         Color c = spriteRenderer.color;
         c.a = 1f;
         spriteRenderer.color = c;
+    }
+
+    public void TomarDaño(float daño)
+    {
+        vida -= daño;
+        if(vida<=0)
+        {
+            Muerte();
+        }
+    }
+
+    private void Muerte()
+    {
+        Destroy(gameObject);
     }
 }
