@@ -1325,8 +1325,9 @@ GameObject:
   m_Component:
   - component: {fileID: 552506384}
   - component: {fileID: 552506385}
+  - component: {fileID: 552506386}
   m_Layer: 0
-  m_Name: Pistol_45x32
+  m_Name: Pistola
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1399,6 +1400,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &552506386
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552506383}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b6f8f229571074498fe6209ad0314cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &583531097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,6 +3146,7 @@ GameObject:
   - component: {fileID: 1177515876}
   - component: {fileID: 1177515875}
   - component: {fileID: 1177515879}
+  - component: {fileID: 1177515880}
   m_Layer: 5
   m_Name: Button_Fire
   m_TagString: Untagged
@@ -3171,7 +3193,23 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1491675358}
           m_TargetAssemblyTypeName: Disparo, Assembly-CSharp
-          m_MethodName: Disparar
+          m_MethodName: DispararSi
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1491675358}
+          m_TargetAssemblyTypeName: Disparo, Assembly-CSharp
+          m_MethodName: DispararNo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3278,6 +3316,26 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2.41, y: -3.1}
   m_UseGraphicAlpha: 1
+--- !u!95 &1177515880
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177515873}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef179bbfb3b708c4a9e85952bd26e5f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1184296137
 GameObject:
   m_ObjectHideFlags: 0
@@ -8976,6 +9034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controladorDisparo: {fileID: 981736594}
   bala: {fileID: 8329851112761943856, guid: 7675b8fbe08f0eb4d9fb618070193b13, type: 3}
+  animator: {fileID: 552506386}
 --- !u!1 &1539359676
 GameObject:
   m_ObjectHideFlags: 0
