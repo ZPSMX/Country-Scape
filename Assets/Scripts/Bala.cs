@@ -6,10 +6,14 @@ public class Bala : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     [SerializeField] private float daño;
+    public float tiempo = 2f;
+
+
 
     private void Update()
     {
         transform.Translate(Vector2.right* velocidad*Time.deltaTime);
+        Invoke("Destruir", tiempo);
 
     }
 
@@ -20,5 +24,11 @@ public class Bala : MonoBehaviour
             collision.GetComponent<Enemigo>().TomarDaño(daño);
             Destroy(gameObject);
         }
+        else { Invoke("Destruir", tiempo); }
+    }
+
+    void Destruir()
+    {
+        Destroy(gameObject);
     }
 }
