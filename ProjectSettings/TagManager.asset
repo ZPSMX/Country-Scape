@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemigo
+  - M4
+  - ShotGun
   layers:
   - Default
   - TransparentFX
