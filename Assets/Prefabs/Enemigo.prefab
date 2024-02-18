@@ -22,23 +22,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4684983978793617319
-Transform:
+--- !u!224 &4684983978793617319
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4684983978793617315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.734, y: -1.762, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.171918, y: 3.171918, z: 3.171918}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9201050427517658133}
   - {fileID: 6698573354821231248}
   m_Father: {fileID: 0}
-  m_RootOrder: 58
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10.734, y: -1.762}
+  m_SizeDelta: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4684983978793617318
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -148,8 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced5b05dc2515104aba8684dc4956712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "TextoDa\xF1oPrefab": {fileID: 4364290745909675633, guid: ff1ad6b338665fc44a24c561268ea6bd, type: 3}
   cooldownAtaque: 1
   particulasEnemigo: {fileID: 9201050427517658139}
+  TextoPop: {fileID: 4364290745909675639, guid: ff1ad6b338665fc44a24c561268ea6bd, type: 3}
   vida: 100
 --- !u!50 &4684983978811421360
 Rigidbody2D:

@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Enemigo : MonoBehaviour
 {
-
+    public GameObject TextoDañoPrefab;
     private bool puedeAtacar = true;
     public float cooldownAtaque;
     private SpriteRenderer spriteRenderer;
     public ParticleSystem particulasEnemigo;
+    public TMP_Text TextoPop;
 
    [SerializeField] private float vida;
     private GameObject efectoMuerte;
@@ -17,6 +18,12 @@ public class Enemigo : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -57,6 +64,9 @@ public class Enemigo : MonoBehaviour
     public void TomarDaño(float daño)
     {
         vida -= daño;
+        TextoPop.text = "-"+daño.ToString();
+        Instantiate(TextoDañoPrefab, transform.position, Quaternion.identity);
+
         if(vida<=0)
         {
             Muerte();
@@ -67,4 +77,6 @@ public class Enemigo : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+
 }
