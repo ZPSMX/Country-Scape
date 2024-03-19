@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8329851112761943858}
   - component: {fileID: 7657884417101366866}
   m_Layer: 0
-  m_Name: bala
+  m_Name: BalaPistola
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,5 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 20
-  "da\xF1o": 20
+  "da\xF1o": 10
   tiempo: 0.5

@@ -10066,7 +10066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controladorDisparo: {fileID: 981736594}
-  bala: {fileID: 8329851112761943856, guid: 7675b8fbe08f0eb4d9fb618070193b13, type: 3}
+  bala: {fileID: 8329851112761943856, guid: cb2f5923d16ebd946ac6a9ef1755240d, type: 3}
   animator: {fileID: 552506386}
 --- !u!114 &1491675359
 MonoBehaviour:
