@@ -9859,7 +9859,6 @@ GameObject:
   - component: {fileID: 1491675352}
   - component: {fileID: 1491675357}
   - component: {fileID: 1491675358}
-  - component: {fileID: 1491675359}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10066,24 +10065,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controladorDisparo: {fileID: 981736594}
-  bala: {fileID: 8329851112761943856, guid: cb2f5923d16ebd946ac6a9ef1755240d, type: 3}
-  animator: {fileID: 552506386}
---- !u!114 &1491675359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1491675351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d4d2213f04efb4698423d66812096b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bala: {fileID: 8329851112761943856, guid: 7675b8fbe08f0eb4d9fb618070193b13, type: 3}
+  balaEscopeta: {fileID: 8329851112761943856, guid: 233b946a83129814589d41f3fa18764d, type: 3}
+  balaMetralleta: {fileID: 8329851112761943856, guid: cb2f5923d16ebd946ac6a9ef1755240d, type: 3}
   pistola: {fileID: 552506383}
   metralleta: {fileID: 1388325386}
   escopeta: {fileID: 1488667721}
   consumible: {fileID: 0}
+  animator: {fileID: 552506386}
 --- !u!1 &1539359676
 GameObject:
   m_ObjectHideFlags: 0
