@@ -3895,6 +3895,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1491675358}
+          m_TargetAssemblyTypeName: Disparo, Assembly-CSharp
+          m_MethodName: DispararNo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1177515876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10073,6 +10089,7 @@ MonoBehaviour:
   escopeta: {fileID: 1488667721}
   consumible: {fileID: 0}
   animator: {fileID: 552506386}
+  frecuenciaDisparo: 0.1
 --- !u!1 &1539359676
 GameObject:
   m_ObjectHideFlags: 0

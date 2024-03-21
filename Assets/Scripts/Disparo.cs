@@ -23,6 +23,8 @@ public class Disparo : MonoBehaviour
     public Animator animator;
     private bool disparoActivo;
 
+    public float frecuenciaDisparo;
+
     private void Update()
     {
         consumible = GetComponent<BoxCollider2D>(); 
@@ -57,12 +59,14 @@ public class Disparo : MonoBehaviour
             //instancia de cada gameobject de bala con su propio dano definidos en el inspector
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
             animator.SetBool("Disparar", true);
+            
         }
-        
+
         else if (disparoActivo == true && metralleta.activeSelf)
         {
-            Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
-            animator.SetBool("Disparar", true);
+
+            InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
+
         }
         else if (disparoActivo == true && escopeta.activeSelf)
         {
@@ -77,9 +81,18 @@ public class Disparo : MonoBehaviour
         if (disparoActivo == false)
         {
             animator.SetBool("Disparar", false);
-           
+            CancelInvoke("metralletaOn");
         }
     }
+
+    //metodo aparte para definir disparo en automatico de metralleta y el tiempo en que tarda salir cada bala del cañon
+    void metralletaOn()
+    {
+        Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
+        animator.SetBool("Disparar", true);
+    }
+  
+
 }
 
 
