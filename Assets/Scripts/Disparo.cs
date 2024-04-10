@@ -5,17 +5,28 @@ using UnityEngine;
 
 public class Disparo : MonoBehaviour
 {
-    
+    [Header("GameObject que controla el disparo")]
     [SerializeField] private Transform controladorDisparo;
+
+
     //sprites balas
+    [Header("Prefabs Balas")]
     [SerializeField] private GameObject bala;
     [SerializeField] private GameObject balaEscopeta;
     [SerializeField] private GameObject balaMetralleta;
-    
+
     // sprites armas
+    [Header("GameObjects SpriteArmas")]
     [SerializeField] GameObject pistola;
     [SerializeField] GameObject metralleta;
     [SerializeField] GameObject escopeta;
+
+    // sprites hud armas
+    [Header("Sprites de armas HUD")]
+    [SerializeField] GameObject pistolaHUD;
+    [SerializeField] GameObject metralletaHUD;
+    [SerializeField] GameObject escopetaHUD;
+
 
     //box colider sprite arma consumible
     public BoxCollider2D consumible;
@@ -23,6 +34,7 @@ public class Disparo : MonoBehaviour
     public Animator animator;
     private bool disparoActivo;
 
+    [Header("Frecuencia de Disparo de la metralleta")]
     public float frecuenciaDisparo;
 
     private void Update()
@@ -39,12 +51,20 @@ public class Disparo : MonoBehaviour
             metralleta.SetActive(true) ;
             pistola.SetActive(false);
             escopeta.SetActive(false);
+            
+            metralletaHUD.SetActive(true);
+            pistolaHUD.SetActive(false);
+            escopetaHUD.SetActive(false);
         }
         else if (collision.gameObject.tag == "ShotGun")
         {
             escopeta.SetActive(true);
             pistola.SetActive(false);
             metralleta.SetActive(false);
+
+            metralletaHUD.SetActive(false);
+            pistolaHUD.SetActive(false);
+            escopetaHUD.SetActive(true);
         }
     }
     //funcion boton disparo

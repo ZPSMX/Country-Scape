@@ -9,6 +9,7 @@ public class HUD : MonoBehaviour
     public GameManager gameManager;
     public TextMeshProUGUI puntos;
     public GameObject[] vida;
+    public GameObject[] SpriteVida;
 
     private void Update()
     {
@@ -23,10 +24,12 @@ public class HUD : MonoBehaviour
     public void DesactivarVida(int indice)
     {
         vida[indice].gameObject.SetActive(false);
+        SpriteVida[indice].gameObject.SetActive(true);
     }
     public void ActivarVida(int indice)
     {
         vida[indice].SetActive(true);
+        SpriteVida[indice].SetActive(false);
     }
   
 
