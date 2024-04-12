@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,12 +8,16 @@ public class HUD : MonoBehaviour
 {
     public GameManager gameManager;
     public TextMeshProUGUI puntos;
+    public TextMeshProUGUI balas;
     public GameObject[] vida;
     public GameObject[] SpriteVida;
+
+
 
     private void Update()
     {
         puntos.text = GameManager.Instance.PuntosTotales.ToString();
+        
     }
 
     public void ActualizarPuntos(int puntosTotales)
@@ -31,6 +35,6 @@ public class HUD : MonoBehaviour
         vida[indice].SetActive(true);
         SpriteVida[indice].SetActive(false);
     }
-  
+
 
 }

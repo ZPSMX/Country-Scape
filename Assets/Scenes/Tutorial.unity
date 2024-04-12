@@ -1004,7 +1004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -4.221, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.4, y: -7.8948364}
+  m_AnchoredPosition: {x: 182.4, y: -7.8947754}
   m_SizeDelta: {x: 202.1237, y: 52.989998}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &464139391
@@ -2563,6 +2563,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &729968730
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2955856018147212048, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_Name
+      value: Gun_Shotgun_OLevel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_RootOrder
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 63.816
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.693
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2955856018147212050, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 00dcc3b94b4ece84f9a4ead49d56ee4e, type: 3}
 --- !u!1 &737093091
 GameObject:
   m_ObjectHideFlags: 0
@@ -10756,6 +10817,11 @@ MonoBehaviour:
   pistolaHUD: {fileID: 1925267557}
   metralletaHUD: {fileID: 1865315041}
   escopetaHUD: {fileID: 584159318}
+  Pistola: {fileID: 552506383}
+  Metralleta: {fileID: 1388325386}
+  Escopeta: {fileID: 1488667721}
+  Textobalas: {fileID: 737093094}
+  ContadorBalaEscopeta: 15
   consumible: {fileID: 0}
   animator: {fileID: 552506386}
   frecuenciaDisparo: 0.1
@@ -24551,6 +24617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   puntos: {fileID: 464139391}
+  balas: {fileID: 737093094}
   vida:
   - {fileID: 1973881831}
   - {fileID: 546906765}
@@ -24763,7 +24830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.78234375, y: 0.038875006}
   m_AnchorMax: {x: 0.87087506, y: 0.21768753}
-  m_AnchoredPosition: {x: 2, y: -1}
+  m_AnchoredPosition: {x: 2, y: -0.99993896}
   m_SizeDelta: {x: 74.66, y: -44.714798}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2087505168

@@ -34,7 +34,7 @@ public class Controlador : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        Debug.Log(joystick.Horizontal);
+        //Debug.Log(joystick.Horizontal);
        
         ProcesarMovimiento();
         ProcesarSalto();
