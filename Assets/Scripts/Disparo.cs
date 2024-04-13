@@ -35,6 +35,7 @@ public class Disparo : MonoBehaviour
     public TextMeshProUGUI Textobalas;
 
     public float ContadorBalaEscopeta = 15f;
+    public float ContadorBalaMetralleta = 120f;
     
     [Header("Otros")]
 
@@ -42,6 +43,7 @@ public class Disparo : MonoBehaviour
     public BoxCollider2D consumible;
 
     public Animator animator;
+    public Animator restarbalas;
     private bool disparoActivo;
 
     [Header("Frecuencia de Disparo de la metralleta")]
@@ -92,7 +94,8 @@ public class Disparo : MonoBehaviour
             //instancia de cada gameobject de bala con su propio dano definidos en el inspector
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
             animator.SetBool("Disparar", true);
-            
+            restarbalas.SetBool("Restar", true);
+
 
         }
 
@@ -100,15 +103,14 @@ public class Disparo : MonoBehaviour
         {
 
             InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
-            
-
         }
         else if (disparoActivo == true && escopeta.activeSelf)
         {
             Instantiate(balaEscopeta, controladorDisparo.position, controladorDisparo.rotation);
             animator.SetBool("Disparar", true);
             ContadorBalaEscopeta--;
-            
+            restarbalas.SetBool("Restar", true);
+
             Debug.Log(ContadorBalaEscopeta);
 
 
@@ -120,10 +122,11 @@ public class Disparo : MonoBehaviour
     public void DispararNo()
     {
         disparoActivo = false;
-        if (disparoActivo == false)
+        if (disparoActivo == false )
         {
             animator.SetBool("Disparar", false);
             CancelInvoke("metralletaOn");
+            restarbalas.SetBool("Restar", false);
         }
     }
 
@@ -131,7 +134,9 @@ public class Disparo : MonoBehaviour
     void metralletaOn()
     {
         Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
-        animator.SetBool("Disparar", true);
+        restarbalas.SetBool("Restar", true);
+        ContadorBalaMetralleta--;
+        
     }
 
 
@@ -145,8 +150,23 @@ public class Disparo : MonoBehaviour
         }
         else if (Metralleta.activeSelf)
         {
-            
-            Textobalas.text = "120";
+
+            //se pasa valores de float contador Escopeta a string para verlo en hud
+            Textobalas.text = ContadorBalaMetralleta.ToString();
+            // condicion si contador es 0 entonces volver a pistola y reiniciar valores de balasEscopeta
+            if (ContadorBalaMetralleta == 0)
+            {
+                //se desactiva la arma actual y se activa pistola de mano infinita
+                pistola.SetActive(true);
+                metralleta.SetActive(false);
+                //reinicio de contador balas
+                pistolaHUD.SetActive(true);
+                metralletaHUD.SetActive(false);
+                CancelInvoke("metralletaOn");
+                ContadorBalaMetralleta = 120;
+
+
+            }
 
         }
         else if (Escopeta.activeSelf)
@@ -160,7 +180,10 @@ public class Disparo : MonoBehaviour
                 pistola.SetActive(true);
                 escopeta.SetActive(false);
                 //reinicio de contador balas
+                pistolaHUD.SetActive(true);
+                escopetaHUD.SetActive(false);
                 ContadorBalaEscopeta = 15;
+
                 
             }
         }
