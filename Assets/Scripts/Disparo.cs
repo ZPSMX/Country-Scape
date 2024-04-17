@@ -94,27 +94,25 @@ public class Disparo : MonoBehaviour
             //instancia de cada gameobject de bala con su propio dano definidos en el inspector
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
             animator.SetBool("Disparar", true);
-            restarbalas.SetBool("Restar", true);
+            restarbalas.SetTrigger("RestarSi");
 
-
+            //agregar a las animaciones el parametro trigger para desactivar inmediatamente al finalizar la animacion.
         }
 
         else if (disparoActivo == true && metralleta.activeSelf)
         {
 
             InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
+            restarbalas.SetTrigger("RestarSi");
+
+
         }
         else if (disparoActivo == true && escopeta.activeSelf)
         {
             Instantiate(balaEscopeta, controladorDisparo.position, controladorDisparo.rotation);
             animator.SetBool("Disparar", true);
             ContadorBalaEscopeta--;
-            restarbalas.SetBool("Restar", true);
-
-            Debug.Log(ContadorBalaEscopeta);
-
-
-
+            restarbalas.SetTrigger("RestarSi");
 
         }
     }
@@ -126,7 +124,8 @@ public class Disparo : MonoBehaviour
         {
             animator.SetBool("Disparar", false);
             CancelInvoke("metralletaOn");
-            restarbalas.SetBool("Restar", false);
+            
+            
         }
     }
 
@@ -134,11 +133,12 @@ public class Disparo : MonoBehaviour
     void metralletaOn()
     {
         Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
-        restarbalas.SetBool("Restar", true);
+        restarbalas.SetTrigger("RestarSi");
         ContadorBalaMetralleta--;
         
     }
 
+   
 
 
     public void armasActivas()
