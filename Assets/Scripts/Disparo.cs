@@ -42,7 +42,9 @@ public class Disparo : MonoBehaviour
     //box colider sprite arma consumible
     public BoxCollider2D consumible;
 
-    public Animator animator;
+    public Animator animatorPistola;
+    public Animator animatorMetralleta;
+    public Animator animatorEscopeta;
     public Animator restarbalas;
     private bool disparoActivo;
 
@@ -93,7 +95,7 @@ public class Disparo : MonoBehaviour
         {
             //instancia de cada gameobject de bala con su propio dano definidos en el inspector
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
-            animator.SetBool("Disparar", true);
+            animatorPistola.SetBool("Disparar", true);
             restarbalas.SetTrigger("RestarSi");
 
             //agregar a las animaciones el parametro trigger para desactivar inmediatamente al finalizar la animacion.
@@ -103,16 +105,19 @@ public class Disparo : MonoBehaviour
         {
 
             InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
-            restarbalas.SetTrigger("RestarSi");
+            //restarbalas.SetTrigger("RestarSi");
+           
+
 
 
         }
         else if (disparoActivo == true && escopeta.activeSelf)
         {
             Instantiate(balaEscopeta, controladorDisparo.position, controladorDisparo.rotation);
-            animator.SetBool("Disparar", true);
+            animatorEscopeta.SetTrigger("Disparo");
             ContadorBalaEscopeta--;
             restarbalas.SetTrigger("RestarSi");
+            
 
         }
     }
@@ -122,7 +127,7 @@ public class Disparo : MonoBehaviour
         disparoActivo = false;
         if (disparoActivo == false )
         {
-            animator.SetBool("Disparar", false);
+            animatorPistola.SetBool("Disparar", false);
             CancelInvoke("metralletaOn");
             
             
@@ -134,6 +139,7 @@ public class Disparo : MonoBehaviour
     {
         Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
         restarbalas.SetTrigger("RestarSi");
+        animatorMetralleta.SetTrigger("Disparar");
         ContadorBalaMetralleta--;
         
     }
