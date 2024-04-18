@@ -23,6 +23,7 @@ public class HUD : MonoBehaviour
     public void ActualizarPuntos(int puntosTotales)
     {
         puntos.text += puntosTotales.ToString();
+        
     }
 
     public void DesactivarVida(int indice)

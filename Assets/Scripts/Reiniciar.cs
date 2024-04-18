@@ -7,6 +7,15 @@ public class Reiniciar : MonoBehaviour
 {
   public void ReIn()
     {
-        SceneManager.LoadScene("Tutorial");
+        //pasamos el nombre de la escena actual
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        //asignamos la escena actual al reiniciar siempre sera la escena que se haya jugado
+        SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void SiguienteEscena()
+    {
+        //siempre cargara la escena siguiente al orden del juego
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
