@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced5b05dc2515104aba8684dc4956712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "TextoDa\xF1oPrefab": {fileID: 4364290745909675633, guid: ff1ad6b338665fc44a24c561268ea6bd, type: 3}
+  "TextoDa\xF1oPrefab": {fileID: 5271709471611500049, guid: 0f0dd6e8d4d32a449a207a9d9ca2ccdc, type: 3}
   cooldownAtaque: 1
   particulasEnemigo: {fileID: 9201050427517658139}
-  TextoPop: {fileID: 4364290745909675639, guid: ff1ad6b338665fc44a24c561268ea6bd, type: 3}
+  TextoPop: {fileID: 5271709471611500055, guid: 0f0dd6e8d4d32a449a207a9d9ca2ccdc, type: 3}
   vida: 100
 --- !u!50 &4684983978811421360
 Rigidbody2D:

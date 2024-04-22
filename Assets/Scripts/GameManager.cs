@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public HUD hud;
     public int PuntosTotales { get { return puntosTotales; } }
 
+
     
 
     private int puntosTotales;
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+           Destroy(gameObject);
             Debug.Log("Cuidado! Mas de un GameManager en escena.");
         }
     }

@@ -6,18 +6,25 @@ using UnityEngine.SceneManagement;
 public class Colisionador : MonoBehaviour
 {
     public BoxCollider2D colisionDebajo;
+    public ControladorDatosJuego controlador;
+
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
-        colisionDebajo = GetComponent<BoxCollider2D>();  
-
+        colisionDebajo = GetComponent<BoxCollider2D>();
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
-            SceneManager.LoadScene("Tutorial");
+            controlador.CargarDatos();
+            //SceneManager.LoadScene("Tutorial");
     }
 
 
