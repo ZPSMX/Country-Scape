@@ -21,6 +21,7 @@ public class Controlador : MonoBehaviour
     public float fuerzaGolpe;
     private bool puedeMoverse =true;
     public ParticleSystem particulas;
+    [SerializeField] private AudioClip saltoSonido;
 
 
 
@@ -123,6 +124,7 @@ public class Controlador : MonoBehaviour
         if (botonSalto==true && EstaenSuelo())
         {
             rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
+            ControladroSonido.Instance.EjecutarSonido(saltoSonido);
         }
 
     }
