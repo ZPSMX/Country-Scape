@@ -1074,7 +1074,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -4.221, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 185.2, y: 12.200012}
+  m_AnchoredPosition: {x: 185.19995, y: 12.199951}
   m_SizeDelta: {x: 202.1237, y: 52.989998}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &464139391
@@ -11559,6 +11559,7 @@ MonoBehaviour:
   restarbalas: {fileID: 998649557}
   frecuenciaDisparo: 0.1
   pistolaClip: {fileID: 8300000, guid: 5a8de4162fdc3eb4994b855b0a90a392, type: 3}
+  EscopetaClip: {fileID: 8300000, guid: ea7ba126e019d2e4aa702ea200e44c61, type: 3}
 --- !u!1 &1512527939
 GameObject:
   m_ObjectHideFlags: 0
@@ -25926,7 +25927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.78234375, y: 0.038875006}
   m_AnchorMax: {x: 0.87087506, y: 0.21768753}
-  m_AnchoredPosition: {x: 2, y: -0.99993896}
+  m_AnchoredPosition: {x: 2, y: -1}
   m_SizeDelta: {x: 74.66, y: -44.714798}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2087505168

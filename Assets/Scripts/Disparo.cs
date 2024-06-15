@@ -54,6 +54,7 @@ public class Disparo : MonoBehaviour
 
     [Header("Sonidos")]
     [SerializeField] private AudioClip pistolaClip;
+    [SerializeField] private AudioClip EscopetaClip;
 
     private void Update()
     {
@@ -122,7 +123,8 @@ public class Disparo : MonoBehaviour
             animatorEscopeta.SetTrigger("Disparo");
             ContadorBalaEscopeta--;
             restarbalas.SetTrigger("RestarSi");
-            
+            ControladroSonido.Instance.EjecutarSonido(EscopetaClip);
+
 
         }
     }
