@@ -51,6 +51,10 @@ public class Disparo : MonoBehaviour
     [Header("Frecuencia de Disparo de la metralleta")]
     public float frecuenciaDisparo;
 
+
+    [Header("Sonidos")]
+    [SerializeField] private AudioClip pistolaClip;
+
     private void Update()
     {
         consumible = GetComponent<BoxCollider2D>();
@@ -97,6 +101,7 @@ public class Disparo : MonoBehaviour
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
             animatorPistola.SetBool("Disparar", true);
             restarbalas.SetTrigger("RestarSi");
+            ControladroSonido.Instance.EjecutarSonido(pistolaClip);
 
             //agregar a las animaciones el parametro trigger para desactivar inmediatamente al finalizar la animacion.
         }

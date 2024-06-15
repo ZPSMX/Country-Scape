@@ -11550,7 +11550,7 @@ MonoBehaviour:
   Metralleta: {fileID: 1388325386}
   Escopeta: {fileID: 1488667721}
   Textobalas: {fileID: 737093094}
-  ContadorBalaEscopeta: 999
+  ContadorBalaEscopeta: 10
   ContadorBalaMetralleta: 120
   consumible: {fileID: 0}
   animatorPistola: {fileID: 552506386}
@@ -11558,6 +11558,7 @@ MonoBehaviour:
   animatorEscopeta: {fileID: 1488667724}
   restarbalas: {fileID: 998649557}
   frecuenciaDisparo: 0.1
+  pistolaClip: {fileID: 8300000, guid: 5a8de4162fdc3eb4994b855b0a90a392, type: 3}
 --- !u!1 &1512527939
 GameObject:
   m_ObjectHideFlags: 0
