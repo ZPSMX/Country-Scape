@@ -26,4 +26,12 @@ public class ControladroSonido : MonoBehaviour
     {
         audioSource.PlayOneShot(sonido);
     }
+
+    public void PararSonido(AudioClip sonido)
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
 }
