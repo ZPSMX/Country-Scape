@@ -9,6 +9,7 @@ public class ScriptMenu : MonoBehaviour
    [SerializeField] private AudioClip SonidoMenu;
     public GameObject PanelOpciones;
     public GameObject PanelIncio;
+    public GameObject PanelNivel;
 
 
     private void Start()
@@ -26,12 +27,21 @@ public class ScriptMenu : MonoBehaviour
     {
         PanelOpciones.SetActive(true);
         PanelIncio.SetActive(false);
+        PanelNivel.SetActive(false);
+    }
+
+    public void menuNiveles()
+    {
+        PanelOpciones.SetActive(false);
+        PanelIncio.SetActive(false);
+        PanelNivel.SetActive(true);
     }
 
     public void regresoMenu()
     {
         PanelOpciones.SetActive(false);
         PanelIncio.SetActive(true);
+        PanelNivel.SetActive(false);
     }
     
 }
