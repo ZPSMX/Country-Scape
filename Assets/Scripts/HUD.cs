@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI balas;
     public GameObject[] vida;
     public GameObject[] SpriteVida;
+    public GameObject PanelEnJuego;
 
 
 
@@ -35,6 +36,18 @@ public class HUD : MonoBehaviour
     {
         vida[indice].SetActive(true);
         SpriteVida[indice].SetActive(false);
+    }
+
+    public void ActivarPanelJuego()
+    {
+        PanelEnJuego.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void DesactivarPanelJuego()
+    {
+        PanelEnJuego.SetActive(false);
+        Time.timeScale = 1f;
     }
 
 
