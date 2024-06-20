@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class HUD : MonoBehaviour
 {
@@ -47,6 +48,13 @@ public class HUD : MonoBehaviour
     public void DesactivarPanelJuego()
     {
         PanelEnJuego.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void CargarMenu()
+    {
+
+        SceneManager.LoadScene(0);
         Time.timeScale = 1f;
     }
 
