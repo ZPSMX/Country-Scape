@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,51 +115,21 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
-    - serializedVersion: 2
-      name: PerroAtlas_0
-      rect:
-        serializedVersion: 2
-        x: 498
-        y: 760
-        width: 26
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 862de6d960d4976429853b3da4b7c018
-      internalID: 771152478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_1
-      rect:
-        serializedVersion: 2
-        x: 1543
-        y: 760
-        width: 9
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 947e229affbd0fa4c8c620390aacbac2
-      internalID: 1895763414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     - serializedVersion: 2
       name: PerroAtlas_2
       rect:
@@ -177,48 +147,6 @@ TextureImporter:
       bones: []
       spriteID: 41b92865fea4ff349b35cd9c811f61c8
       internalID: -1251294266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_3
-      rect:
-        serializedVersion: 2
-        x: 457
-        y: 742
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c003f9cea568e8743bb11889b884d03d
-      internalID: -1535559278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_4
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 742
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b9db3eec723e314db179874ccc7056a
-      internalID: 616785997
       vertices: []
       indices: 
       edges: []
@@ -266,48 +194,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerroAtlas_7
-      rect:
-        serializedVersion: 2
-        x: 2573
-        y: 742
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 629b959da66c11c4580ee8fa0c8a4016
-      internalID: 1118462013
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_8
-      rect:
-        serializedVersion: 2
-        x: 1476
-        y: 734
-        width: 7
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c121f64cf0aa1684a8afc3373b9011ca
-      internalID: 1995234202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PerroAtlas_9
       rect:
         serializedVersion: 2
@@ -324,69 +210,6 @@ TextureImporter:
       bones: []
       spriteID: 2027d4481087ec24eacedf526a734c15
       internalID: 1098799771
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_10
-      rect:
-        serializedVersion: 2
-        x: 4237
-        y: 725
-        width: 5
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 182930e11830f9d448f2b5ce7d55cb92
-      internalID: -2098379409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_11
-      rect:
-        serializedVersion: 2
-        x: 4218
-        y: 716
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f969341759867449b25ef063834430f
-      internalID: 1619546856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_12
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 708
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0e7b399855d7bf048839494c2d84d167
-      internalID: -89206729
       vertices: []
       indices: 
       edges: []
@@ -413,27 +236,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerroAtlas_14
-      rect:
-        serializedVersion: 2
-        x: 3181
-        y: 708
-        width: 9
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db1e9d87d55958e4d91c57f5f6087304
-      internalID: 607955514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PerroAtlas_15
       rect:
         serializedVersion: 2
@@ -450,48 +252,6 @@ TextureImporter:
       bones: []
       spriteID: 94b5e09b70660ec41b1031a0785cac2c
       internalID: 770595064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_16
-      rect:
-        serializedVersion: 2
-        x: 3953
-        y: 708
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 62e4f5e0ffd105641bfd541f896d2bc9
-      internalID: 888188772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_17
-      rect:
-        serializedVersion: 2
-        x: 4013
-        y: 708
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c41da49bc8b6cfa44bc35e0512205d91
-      internalID: 415528309
       vertices: []
       indices: 
       edges: []
@@ -518,48 +278,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerroAtlas_19
-      rect:
-        serializedVersion: 2
-        x: 879
-        y: 699
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a3d48e74d59e8f4293d2af22ac8c704
-      internalID: 220354435
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_20
-      rect:
-        serializedVersion: 2
-        x: 2862
-        y: 699
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb54023df4015f742aa9ef8cf8ec7641
-      internalID: -1220602098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PerroAtlas_21
       rect:
         serializedVersion: 2
@@ -581,237 +299,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PerroAtlas_22
-      rect:
-        serializedVersion: 2
-        x: 3233
-        y: 647
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb0c37dcdb41a9448abc5c8918c4ecc8
-      internalID: 1890529415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_23
-      rect:
-        serializedVersion: 2
-        x: 3147
-        y: 477
-        width: 17
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6eb247c76f13ae44893c9191e9eadb8b
-      internalID: -1034238210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_24
-      rect:
-        serializedVersion: 2
-        x: 4112
-        y: 481
-        width: 9
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57b702e698041de4ca322f36e428a09e
-      internalID: -1690850838
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_25
-      rect:
-        serializedVersion: 2
-        x: 4037
-        y: 468
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4aa7c18e1b9233046886c55e0bc8ab5c
-      internalID: -1336160693
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_26
-      rect:
-        serializedVersion: 2
-        x: 4078
-        y: 464
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc9ebc44947197349b89716785d82411
-      internalID: -1616006832
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_27
-      rect:
-        serializedVersion: 2
-        x: 1905
-        y: 460
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3088d48918b5efe448033d57533d7399
-      internalID: -1686174121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_28
-      rect:
-        serializedVersion: 2
-        x: 4045
-        y: 462
-        width: 7
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 38bac167f08d1d0408360ea0e8171593
-      internalID: 1030242406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_29
-      rect:
-        serializedVersion: 2
-        x: 1860
-        y: 453
-        width: 11
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63cea017ee40fe345ac93beadce00e6c
-      internalID: 1070337404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_30
-      rect:
-        serializedVersion: 2
-        x: 1897
-        y: 453
-        width: 4
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c10b5008c7047e84c8f2e5eb7ce50ddc
-      internalID: -631924629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_31
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 388
-        width: 45
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6c1ddcf65ed7d748bdf959ee1d1c223
-      internalID: 1926226545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_32
-      rect:
-        serializedVersion: 2
-        x: 1522
-        y: 388
-        width: 30
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aee7187f909a9db41a65e4c704238134
-      internalID: -934909898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PerroAtlas_33
       rect:
         serializedVersion: 2
@@ -828,48 +315,6 @@ TextureImporter:
       bones: []
       spriteID: 161d66c522dc59a4cad523737aee65f2
       internalID: 517443396
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_34
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 380
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27da62a5986933b40bd15be778277d03
-      internalID: 1366934380
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_35
-      rect:
-        serializedVersion: 2
-        x: 535
-        y: 371
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 66d165518cf82f6499f6b23ab069244c
-      internalID: 1620818496
       vertices: []
       indices: 
       edges: []
@@ -912,69 +357,6 @@ TextureImporter:
       bones: []
       spriteID: ce272adae01bb4b448ff3364e194f46a
       internalID: 719059048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_38
-      rect:
-        serializedVersion: 2
-        x: 1489
-        y: 371
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3b64d65e8be85d4d811416076f27b9d
-      internalID: 1750930342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_39
-      rect:
-        serializedVersion: 2
-        x: 2586
-        y: 371
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43cea3d32abd34b42ac89fe831498343
-      internalID: -8498705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_40
-      rect:
-        serializedVersion: 2
-        x: 4220
-        y: 354
-        width: 78
-        height: 19
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5773d5b6d0beb11418d6101441b4453b
-      internalID: 1858329853
       vertices: []
       indices: 
       edges: []
@@ -1026,7 +408,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2679
-        y: 117
+        y: 118
         width: 571
         height: 231
       alignment: 0
@@ -1080,174 +462,6 @@ TextureImporter:
       bones: []
       spriteID: 917ca18449f1bc14c952bc5c89dd5414
       internalID: 2023977493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_46
-      rect:
-        serializedVersion: 2
-        x: 4024
-        y: 345
-        width: 58
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b91797fb90637f140941048ee5caf52e
-      internalID: 2145207080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_47
-      rect:
-        serializedVersion: 2
-        x: 3108
-        y: 337
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9945f9e402fbc64aa04cb1ac73070b9
-      internalID: 394049688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_48
-      rect:
-        serializedVersion: 2
-        x: 3216
-        y: 311
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba76285a9450a664e8f870f2135ee920
-      internalID: -264836847
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_49
-      rect:
-        serializedVersion: 2
-        x: 3263
-        y: 302
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6bc05dfb39107c428cdc8c948650293
-      internalID: 865878794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_50
-      rect:
-        serializedVersion: 2
-        x: 2112
-        y: 285
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b18a3f3caac53f44b74274c5011ffb1
-      internalID: 966779049
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_51
-      rect:
-        serializedVersion: 2
-        x: 1905
-        y: 93
-        width: 24
-        height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4aa7d348c7765941847e614ef58cf1d
-      internalID: 186579801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_52
-      rect:
-        serializedVersion: 2
-        x: 3149
-        y: 108
-        width: 15
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5f3e66396e1bc742aa4adbb7c183f33
-      internalID: 341364075
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PerroAtlas_54
-      rect:
-        serializedVersion: 2
-        x: 4043
-        y: 93
-        width: 35
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fde665537e1592941a9a266a2b20e09c
-      internalID: 1844009075
       vertices: []
       indices: 
       edges: []
