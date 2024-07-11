@@ -13,6 +13,7 @@ public class ActivarLaser : MonoBehaviour
     void Start()
     {
         StartCoroutine(OnLaser());
+        particulasLaser.Play();
     }
 
     // Update is called once per frame
