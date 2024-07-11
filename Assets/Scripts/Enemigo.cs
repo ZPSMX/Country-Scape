@@ -11,6 +11,9 @@ public class Enemigo : MonoBehaviour
     public ParticleSystem particulasEnemigo;
     public TMP_Text TextoPop;
 
+   
+   
+
    [SerializeField] private float vida;
     private GameObject efectoMuerte;
     
@@ -19,11 +22,7 @@ public class Enemigo : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         
-    }
 
-    private void Update()
-    {
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -77,6 +76,8 @@ public class Enemigo : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+  
 
 
 }
