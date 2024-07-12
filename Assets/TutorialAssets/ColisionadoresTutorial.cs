@@ -12,6 +12,7 @@ public class ColisionadoresTutorial : MonoBehaviour
     public Collider2D colisionadorCuatro;
     public Collider2D colisionadorCinco;
     public Collider2D colisionadorSeis;
+    public Collider2D colisionadorSiete;
 
     [Header("Textos")]
     public GameObject textoUno;
@@ -20,6 +21,7 @@ public class ColisionadoresTutorial : MonoBehaviour
     public GameObject textoCuatro;
     public GameObject textoCinco;
     public GameObject textoSeis;
+    public GameObject textoSiete;
 
 
 
@@ -32,9 +34,10 @@ public class ColisionadoresTutorial : MonoBehaviour
         else if (other== colisionadorCuatro) { textoCuatro.SetActive(true); }
         else if (other == colisionadorCinco) { textoCinco.SetActive(true); }
         else if (other == colisionadorSeis) { textoSeis.SetActive(true); }
-       
+        else if (other == colisionadorSiete) { textoSiete.SetActive(true); }
 
-        
+
+
     }
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -44,7 +47,7 @@ public class ColisionadoresTutorial : MonoBehaviour
         else if (other== colisionadorCuatro) { textoCuatro.SetActive(false);}
         else if (other == colisionadorCinco) { textoCinco.SetActive(false); }
         else if (other== colisionadorSeis) { textoSeis.SetActive(false);}
-
+        else if (other == colisionadorSiete) { textoSiete.SetActive(false); }
     }
 
     

@@ -2,19 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class ControladorDatosJuego : MonoBehaviour
 {
     public GameObject jugador;
+
+
     public string archivoDeGuardado;
     public DatosJuegos datosJuego = new DatosJuegos();
 
+
+
+    private void Start()
+    {
+     
+    }
 
     private void Awake()
     {
         archivoDeGuardado = Application.dataPath + "/datosJuego.json";
 
         jugador = GameObject.FindGameObjectWithTag("Player");
+   
 
     }
 
@@ -48,10 +58,12 @@ public class ControladorDatosJuego : MonoBehaviour
         else { Debug.Log("El archivo no existe"); }
     }
 
-    private void GuardarDatos()
+    public void GuardarDatos()
     {
         DatosJuegos nuevosDatos = new DatosJuegos()
-        { posicion = jugador.transform.position };
+        {
+            posicion = jugador.transform.position
+        };
        
 
         string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
@@ -60,4 +72,5 @@ public class ControladorDatosJuego : MonoBehaviour
 
     }
 
+   
 }

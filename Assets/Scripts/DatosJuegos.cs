@@ -8,5 +8,6 @@ public class DatosJuegos
 {
 
     public Vector3 posicion;
+    public float volumen;
 
 }
