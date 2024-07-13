@@ -35,8 +35,11 @@ public class ControladroSonido : MonoBehaviour
 
     private void Start()
     {
-        volumeSlider.value = AudioListener.volume;
-        volumeSlider.onValueChanged.AddListener(CambiarVolumen);
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = AudioListener.volume;
+            volumeSlider.onValueChanged.AddListener(CambiarVolumen);
+        }
     }
 
     public void EjecutarSonido(AudioClip sonido)
@@ -52,7 +55,7 @@ public class ControladroSonido : MonoBehaviour
         }
     }
 
-    void CambiarVolumen(float volume)
+   public void CambiarVolumen(float volume)
     {
         AudioListener.volume = volume;
     }
@@ -63,7 +66,6 @@ public class ControladroSonido : MonoBehaviour
         {
             string contenido = File.ReadAllText(archivoDeGuardado);
             datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
-            volumeSlider.value = datosJuego.volumen;
             AudioListener.volume = datosJuego.volumen; // Asegurarse de que el AudioListener también se actualice
         }
         else
@@ -76,7 +78,7 @@ public class ControladroSonido : MonoBehaviour
     {
         DatosJuegos nuevosDatos = new DatosJuegos()
         {
-            volumen = volumeSlider.value
+            volumen = AudioListener.volume
         };
 
         string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
