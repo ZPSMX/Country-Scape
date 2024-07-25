@@ -9,11 +9,9 @@ public class GameManager : MonoBehaviour
     public HUD hud;
     public int PuntosTotales { get { return puntosTotales; } }
 
-
-    
-
     private int puntosTotales;
-    private int vidas = 3;
+    private int vidas;
+    private int vidasIniciales = 3; // Número inicial de vidas
 
     private void Awake()
     {
@@ -21,45 +19,92 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            vidas = vidasIniciales; // Inicializar vidas
         }
         else
         {
-           Destroy(gameObject);
-            Debug.Log("Cuidado! Mas de un GameManager en escena.");
+            Destroy(gameObject);
+            Debug.Log("Cuidado! Más de un GameManager en escena.");
         }
     }
 
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
 
-
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        hud = FindObjectOfType<HUD>();
+        if (hud != null)
+        {
+            Debug.Log("HUD encontrado y referenciado.");
+            ReiniciarVidas();
+        }
+        else
+        {
+            Debug.LogWarning("HUD no encontrado en la escena.");
+        }
+    }
 
     public void SumarPuntos(int puntosASumar)
     {
         puntosTotales += puntosASumar;
-        hud.ActualizarPuntos(PuntosTotales);
+        if (hud != null)
+        {
+            hud.ActualizarPuntos(PuntosTotales);
+        }
     }
 
     public void PerderVidas()
     {
         vidas -= 1;
 
-
-        if(vidas == 0)
+        if (vidas <= 0)
         {
-            //Reiniciar Nivel
-            SceneManager.LoadScene(0);
+            // Reiniciar nivel actual
+            int escenaActual = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(escenaActual);
+            vidas = vidasIniciales; // Reiniciar vidas
         }
-        hud.DesactivarVida(vidas);
+        else
+        {
+            if (hud != null)
+            {
+                hud.DesactivarVida(vidas);
+            }
+            else
+            {
+                Debug.LogWarning("HUD no está asignado o ha sido destruido.");
+            }
+        }
     }
 
     public bool RecuperarVida()
     {
-        if (vidas == 3)
+        if (vidas >= vidasIniciales)
         {
             return false;
         }
-        hud.ActivarVida(vidas);
+
+        if (hud != null)
+        {
+            hud.ActivarVida(vidas);
+        }
         vidas += 1;
         return true;
-       
+    }
+
+    private void ReiniciarVidas()
+    {
+        vidas = vidasIniciales;
+        for (int i = 0; i < vidas; i++)
+        {
+            hud.ActivarVida(i);
+        }
     }
 }

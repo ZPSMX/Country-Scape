@@ -383,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8054374936401195968, guid: 60eff5a6e8578cd418a80038c2f5fb3a, type: 3}
       propertyPath: distanciaFrontal
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8054374936401195968, guid: 60eff5a6e8578cd418a80038c2f5fb3a, type: 3}
       propertyPath: distanciaVertical

@@ -11,6 +11,9 @@ public class MovimientoPlataforma : MonoBehaviour
     public bool moviendoDerecha;
     private Rigidbody2D rb;
 
+    // Tags de las armas que queremos ignorar
+    private string[] tagsIgnorados = { "M4", "ShotGun" };
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,8 +34,8 @@ public class MovimientoPlataforma : MonoBehaviour
         {
             Girar();
         }
-        // Cambiar de dirección si hay una plataforma al frente
-        else if (informacionFrontal)
+        // Cambiar de dirección si hay una plataforma al frente, excepto si es un arma ignorada
+        else if (informacionFrontal && !EsArmaIgnorada(informacionFrontal.collider))
         {
             Girar();
         }
@@ -43,6 +46,18 @@ public class MovimientoPlataforma : MonoBehaviour
         moviendoDerecha = !moviendoDerecha;
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 180, 0);
         velocidad *= -1;
+    }
+
+    private bool EsArmaIgnorada(Collider2D collider)
+    {
+        foreach (string tag in tagsIgnorados)
+        {
+            if (collider.CompareTag(tag))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnDrawGizmos()
@@ -56,3 +71,4 @@ public class MovimientoPlataforma : MonoBehaviour
         Gizmos.DrawLine(controlador.transform.position, controlador.transform.position + direccionHorizontal * distanciaFrontal);
     }
 }
+
