@@ -121,15 +121,24 @@ public class ControladorDatosJuego : MonoBehaviour
             datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
             Debug.Log("Última escena jugada: " + datosJuego.escena);
 
-            // Cargar la última escena jugada si no es Intro o Menu
-            if (datosJuego.escena != "Intro" && datosJuego.escena != "Menu")
+            // Verificar si la escena guardada es válida
+            if (!string.IsNullOrEmpty(datosJuego.escena) && SceneExists(datosJuego.escena))
             {
-                SceneManager.LoadScene(datosJuego.escena);
+                // Cargar la última escena jugada si no es Intro o Menu
+                if (datosJuego.escena != "Intro" && datosJuego.escena != "Menu")
+                {
+                    SceneManager.LoadScene(datosJuego.escena);
+                }
+                else
+                {
+                    Debug.Log("Última escena guardada es Intro o Menu, cargando la primera escena del juego.");
+                    SceneManager.LoadScene("Tutorial"); // Cambia esto por el nombre de tu primera escena
+                }
             }
             else
             {
-                Debug.Log("Última escena guardada es Intro o Menu, cargando la primera escena del juego.");
-                SceneManager.LoadScene("NombreDeTuPrimeraEscena"); // Cambia esto por el nombre de tu primera escena
+                Debug.LogWarning("Nombre de escena guardado no válido o vacío, cargando la primera escena del juego.");
+                SceneManager.LoadScene("Tutorial"); // Cambia esto por el nombre de tu primera escena
             }
         }
         else
@@ -145,7 +154,23 @@ public class ControladorDatosJuego : MonoBehaviour
         string escenaActual = SceneManager.GetActiveScene().name;
         return escenaActual == "Intro" || escenaActual == "Menu";
     }
+
+    private bool SceneExists(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            if (sceneFileName == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+
 
 
 

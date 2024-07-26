@@ -22,7 +22,6 @@ public class VolumeSliderManager : MonoBehaviour
         if (ControladroSonido.Instance != null)
         {
             ControladroSonido.Instance.CambiarVolumen(volumeSlider.value);
-            ControladroSonido.Instance.GuardarDatosAudio();
         }
     }
 }

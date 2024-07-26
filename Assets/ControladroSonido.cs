@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class ControladroSonido : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class ControladroSonido : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded; // Suscribirse al evento de carga de escena
         }
         else
         {
@@ -35,11 +37,49 @@ public class ControladroSonido : MonoBehaviour
 
     private void Start()
     {
+        FindVolumeSlider();
         if (volumeSlider != null)
         {
             volumeSlider.value = AudioListener.volume;
             volumeSlider.onValueChanged.AddListener(CambiarVolumen);
         }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Desuscribirse del evento de carga de escena
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        FindVolumeSlider();
+        if (volumeSlider != null)
+        {
+            volumeSlider.value = AudioListener.volume;
+            volumeSlider.onValueChanged.AddListener(CambiarVolumen);
+        }
+    }
+
+    private void FindVolumeSlider()
+    {
+        volumeSlider = FindInactiveObjectByName<Slider>("VolumeSlider");
+        if (volumeSlider == null)
+        {
+            Debug.LogWarning("VolumeSlider no encontrado en la escena.");
+        }
+    }
+
+    private T FindInactiveObjectByName<T>(string name) where T : Component
+    {
+        T[] objs = Resources.FindObjectsOfTypeAll<T>();
+        foreach (T obj in objs)
+        {
+            if (obj.name == name)
+            {
+                return obj;
+            }
+        }
+        return null;
     }
 
     public void EjecutarSonido(AudioClip sonido)
@@ -55,9 +95,10 @@ public class ControladroSonido : MonoBehaviour
         }
     }
 
-   public void CambiarVolumen(float volume)
+    public void CambiarVolumen(float volume)
     {
         AudioListener.volume = volume;
+        GuardarDatosAudio();
     }
 
     public void CargarDatosAudio()
@@ -66,7 +107,7 @@ public class ControladroSonido : MonoBehaviour
         {
             string contenido = File.ReadAllText(archivoDeGuardado);
             datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
-            AudioListener.volume = datosJuego.volumen; // Asegurarse de que el AudioListener también se actualice
+            AudioListener.volume = datosJuego.volumen;
         }
         else
         {
@@ -76,19 +117,30 @@ public class ControladroSonido : MonoBehaviour
 
     public void GuardarDatosAudio()
     {
-        DatosJuegos nuevosDatos = new DatosJuegos()
+        if (File.Exists(archivoDeGuardado))
         {
-            volumen = AudioListener.volume
-        };
+            // Leer el JSON existente para no sobrescribir otros datos
+            string contenido = File.ReadAllText(archivoDeGuardado);
+            DatosJuegos datosExistentes = JsonUtility.FromJson<DatosJuegos>(contenido);
+            datosExistentes.volumen = AudioListener.volume;
 
-        string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
-        File.WriteAllText(archivoDeGuardado, cadenaJSON);
-        Debug.Log("Archivo guardado");
-    }
+            // Guardar solo el volumen
+            string cadenaJSON = JsonUtility.ToJson(datosExistentes);
+            File.WriteAllText(archivoDeGuardado, cadenaJSON);
+            Debug.Log("Volumen guardado");
+        }
+        else
+        {
+            // Si no existe el archivo, crearlo con los datos actuales
+            DatosJuegos nuevosDatos = new DatosJuegos()
+            {
+                volumen = AudioListener.volume
+            };
 
-    // Método para asignar al botón de guardar
-    public void OnGuardarButtonClicked()
-    {
-        GuardarDatosAudio();
+            string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
+            File.WriteAllText(archivoDeGuardado, cadenaJSON);
+            Debug.Log("Archivo creado y volumen guardado");
+        }
     }
 }
+
