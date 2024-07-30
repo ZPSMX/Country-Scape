@@ -16,7 +16,7 @@ public class ControladroSonido : MonoBehaviour
 
     private void Awake()
     {
-        archivoDeGuardado = Application.dataPath + "/datosJuego.json";
+        archivoDeGuardado = Path.Combine(Application.persistentDataPath, "datosJuego.json");
 
         if (Instance == null)
         {

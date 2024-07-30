@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using System.IO;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ControladorDatosJuego : MonoBehaviour
@@ -10,28 +8,22 @@ public class ControladorDatosJuego : MonoBehaviour
     public GameObject jugador;
     public string archivoDeGuardado;
     public DatosJuegos datosJuego = new DatosJuegos();
-    public Button botonReiniciar; // Botón para reiniciar
-    public Button botonIniciar; // Botón para iniciar el juego
+
+    private void Awake()
+    {
+        archivoDeGuardado = Path.Combine(Application.persistentDataPath, "datosJuego.json");
+        Debug.Log("Ruta del archivo de guardado: " + archivoDeGuardado);
+    }
 
     private void Start()
     {
-        if (botonReiniciar != null)
-        {
-            botonReiniciar.onClick.AddListener(ReiniciarPosicion);
-        }
-        if (botonIniciar != null)
-        {
-            botonIniciar.onClick.AddListener(IniciarJuego);
-        }
-
-        // Solo guardar posición inicial si no estamos en la escena Intro o Menu
         if (!EsEscenaIntroOMenu())
         {
             jugador = GameObject.FindGameObjectWithTag("Player");
 
             if (jugador != null)
             {
-                GuardarPosicionInicial();
+                GuardarDatos(); // Guardar posición inicial al iniciar
             }
             else
             {
@@ -40,51 +32,49 @@ public class ControladorDatosJuego : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        archivoDeGuardado = Application.dataPath + "/datosJuego.json";
-    }
-
-    private void GuardarPosicionInicial()
-    {
-        if (EsEscenaIntroOMenu())
-        {
-            Debug.Log("No se guarda la posición en las escenas Intro o Menu.");
-            return;
-        }
-
-        DatosJuegos nuevosDatos = new DatosJuegos()
-        {
-            posicion = jugador.transform.position,
-            escena = SceneManager.GetActiveScene().name // Guardar el nombre de la escena actual
-        };
-
-        string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
-        File.WriteAllText(archivoDeGuardado, cadenaJSON);
-        Debug.Log("Posición inicial guardada");
-    }
-
     public void CargarDatos()
     {
-        if (File.Exists(archivoDeGuardado))
+        try
         {
-            string contenido = File.ReadAllText(archivoDeGuardado);
-            datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
-            Debug.Log("Posición Jugador: " + datosJuego.posicion);
-
-            jugador = GameObject.FindGameObjectWithTag("Player");
-            if (jugador != null)
+            if (File.Exists(archivoDeGuardado))
             {
-                jugador.transform.position = datosJuego.posicion;
+                string contenido = File.ReadAllText(archivoDeGuardado);
+                datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
+                Debug.Log("Datos cargados: " + contenido);
+
+                if (jugador == null)
+                {
+                    jugador = GameObject.FindGameObjectWithTag("Player");
+                }
+
+                if (jugador != null)
+                {
+                    jugador.transform.position = datosJuego.posicion;
+                    Debug.Log("Posición del jugador establecida a: " + datosJuego.posicion);
+                }
+                else
+                {
+                    Debug.LogWarning("Jugador no encontrado al cargar datos.");
+                }
+
+                // Verificar si la escena guardada es válida y cargarla si es necesario
+                if (!string.IsNullOrEmpty(datosJuego.escena) && SceneExists(datosJuego.escena))
+                {
+                    SceneManager.LoadScene(datosJuego.escena);
+                }
+                else
+                {
+                    Debug.LogWarning("Nombre de escena guardado no válido o vacío.");
+                }
             }
             else
             {
-                Debug.LogWarning("Jugador no encontrado al cargar datos.");
+                Debug.Log("El archivo no existe: " + archivoDeGuardado);
             }
         }
-        else
+        catch (Exception e)
         {
-            Debug.Log("El archivo no existe");
+            Debug.LogError("Error cargando datos: " + e.Message);
         }
     }
 
@@ -102,50 +92,15 @@ public class ControladorDatosJuego : MonoBehaviour
             escena = SceneManager.GetActiveScene().name // Guardar el nombre de la escena actual
         };
 
-        string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
-        File.WriteAllText(archivoDeGuardado, cadenaJSON);
-        Debug.Log("Archivo guardado");
-    }
-
-    private void ReiniciarPosicion()
-    {
-        CargarDatos();
-        Debug.Log("Posición reiniciada");
-    }
-
-    private void IniciarJuego()
-    {
-        if (File.Exists(archivoDeGuardado))
+        try
         {
-            string contenido = File.ReadAllText(archivoDeGuardado);
-            datosJuego = JsonUtility.FromJson<DatosJuegos>(contenido);
-            Debug.Log("Última escena jugada: " + datosJuego.escena);
-
-            // Verificar si la escena guardada es válida
-            if (!string.IsNullOrEmpty(datosJuego.escena) && SceneExists(datosJuego.escena))
-            {
-                // Cargar la última escena jugada si no es Intro o Menu
-                if (datosJuego.escena != "Intro" && datosJuego.escena != "Menu")
-                {
-                    SceneManager.LoadScene(datosJuego.escena);
-                }
-                else
-                {
-                    Debug.Log("Última escena guardada es Intro o Menu, cargando la primera escena del juego.");
-                    SceneManager.LoadScene("Tutorial"); // Cambia esto por el nombre de tu primera escena
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Nombre de escena guardado no válido o vacío, cargando la primera escena del juego.");
-                SceneManager.LoadScene("Tutorial"); // Cambia esto por el nombre de tu primera escena
-            }
+            string cadenaJSON = JsonUtility.ToJson(nuevosDatos);
+            File.WriteAllText(archivoDeGuardado, cadenaJSON);
+            Debug.Log("Datos guardados: " + cadenaJSON);
         }
-        else
+        catch (Exception e)
         {
-            Debug.Log("No hay datos guardados. Cargando la primera escena.");
-            // Cargar la primera escena del juego si no hay datos guardados
-            SceneManager.LoadScene("NombreDeTuPrimeraEscena"); // Cambia esto por el nombre de tu primera escena
+            Debug.LogError("Error guardando datos: " + e.Message);
         }
     }
 
@@ -160,7 +115,7 @@ public class ControladorDatosJuego : MonoBehaviour
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
-            string sceneFileName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            string sceneFileName = Path.GetFileNameWithoutExtension(scenePath);
             if (sceneFileName == sceneName)
             {
                 return true;
@@ -169,10 +124,3 @@ public class ControladorDatosJuego : MonoBehaviour
         return false;
     }
 }
-
-
-
-
-
-
-
