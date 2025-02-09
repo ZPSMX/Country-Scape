@@ -1,162 +1,122 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.IO;
 
 public class Controlador : MonoBehaviour
 {
-
-    public float velocidad;
-    public float Fuerzasalto;
-    public LayerMask CapaSuelo;
+    [SerializeField] private float velocidad;
+    [SerializeField] private float Fuerzasalto;
+    [SerializeField] private LayerMask CapaSuelo;
+    [SerializeField] private FixedJoystick joystick;
+    [SerializeField] private ParticleSystem particulas;
+    [SerializeField] private AudioClip saltoSonido;
+    [SerializeField] private float fuerzaGolpe;
 
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider;
-    public bool mirandoDerecha = true;
     private Animator animator;
-    [SerializeField] public FixedJoystick joystick;
-    public bool botonSalto= false;
-    public float fuerzaGolpe;
-    private bool puedeMoverse =true;
-    public ParticleSystem particulas;
-    [SerializeField] private AudioClip saltoSonido;
+    private bool mirandoDerecha = true;
+    private bool puedeMoverse = true;
 
+    private Disparo disparoScript; // Referencia al script de disparo
 
-
-    
-
-
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-
         rigidBody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        //Debug.Log(joystick.Horizontal);
-       
+
+        // Obtener referencia al script Disparo en el mismo GameObject
+        disparoScript = GetComponent<Disparo>();
+    }
+
+    void Update()
+    {
         ProcesarMovimiento();
-        ProcesarSalto();
-       
-
+        ProcesarEntradaPC();
     }
 
-    bool EstaenSuelo()
+    bool EstaEnSuelo()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y), 0f, Vector2.down, 0.2f, CapaSuelo);
-        return raycastHit.collider;
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, 0.2f, CapaSuelo);
     }
 
-
-
-    void ProcesarSalto()
+    void Saltar()
     {
+        if (!puedeMoverse || !EstaEnSuelo()) return;
 
-        if (!puedeMoverse) return;
-        if (Input.GetKeyDown(KeyCode.Space) && EstaenSuelo())
-        {
-            rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
-            
-
-        }
-        
+        rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
+        ControladroSonido.Instance.EjecutarSonido(saltoSonido);
     }
+
     void ProcesarMovimiento()
     {
-       
-        //revisar variable y condicion de movimiento
         if (!puedeMoverse) return;
 
-        //Logica de Movimiento PC
-        float inputMovimiento = Input.GetAxis("Horizontal");
+        // Movimiento en PC con A/D
+        float movimientoPC = Input.GetAxis("Horizontal");
 
+        // Movimiento en Android con Joystick
+        float movimientoAndroid = joystick.Horizontal;
 
-        /** logica movimiento PC
-         if (inputMovimiento != 0)
-         {
-             animator.SetBool("isRunning",true);
-         }
-         else { animator.SetBool("isRunning", false); }
-        
-         GestionarOrientacion(inputmovimiento);
+        // Priorizar joystick si está en uso, sino usar el teclado
+        float movimientoFinal = movimientoAndroid != 0 ? movimientoAndroid : movimientoPC;
 
-        rigidBody.velocity = new Vector2(inputMovimiento * velocidad, rigidBody.velocity.y);**/
+        rigidBody.velocity = new Vector2(movimientoFinal * velocidad, rigidBody.velocity.y);
 
-        //Logica de Movimiento ANDROID
+        bool estaCorriendo = movimientoFinal != 0;
+        animator.SetBool("isRunning", estaCorriendo);
 
+        if (estaCorriendo && !particulas.isPlaying) particulas.Play();
+        else if (!estaCorriendo && particulas.isPlaying) particulas.Stop();
 
-        rigidBody.velocity = new Vector2(joystick.Horizontal * velocidad, rigidBody.velocity.y);
-
-        if (joystick.Horizontal != 0)
-        {
-            animator.SetBool("isRunning", true);
-            particulas.Play();
-        }
-        else { animator.SetBool("isRunning", false);
-            particulas.Stop();
-        }
-
-        GestionarOrientacion(joystick.Horizontal);
-
-        
+        GestionarOrientacion(movimientoFinal);
     }
 
-    void GestionarOrientacion(float inputmovimiento)
+    void GestionarOrientacion(float inputMovimiento)
     {
-        //Si se cumple condición
-        if ((mirandoDerecha == true && inputmovimiento < 0) || (mirandoDerecha == false && inputmovimiento > 0))
+        if ((mirandoDerecha && inputMovimiento < 0) || (!mirandoDerecha && inputMovimiento > 0))
         {
-            //Ejecutar codigo de volteado 
             mirandoDerecha = !mirandoDerecha;
-          //girado general para objetos dentro de jugador
-            transform.eulerAngles = new Vector3(0,transform.eulerAngles.y+180,0);
+            transform.Rotate(0f, 180f, 0f);
         }
-
     }
 
-    public void androidSaltar() {
-        if (!puedeMoverse) return;
-
-        botonSalto = true;
-
-        if (botonSalto==true && EstaenSuelo())
-        {
-            rigidBody.AddForce(Vector2.up * Fuerzasalto, ForceMode2D.Impulse);
-            ControladroSonido.Instance.EjecutarSonido(saltoSonido);
-        }
-
-    }
-
-   public void AplicarGolpe()
+    public void androidSaltar()
     {
-       
-       puedeMoverse= false;
-        Vector2 direccionGolpe;
+        Saltar();
+    }
 
-        if (joystick.Horizontal > 0)
-        {
-            direccionGolpe = new Vector2(-1,1);
-        }
-        else
-        {
-            direccionGolpe = new Vector2(1,1);
-        }
-
-        
+    public void AplicarGolpe()
+    {
+        puedeMoverse = false;
+        Vector2 direccionGolpe = joystick.Horizontal > 0 ? new Vector2(-1, 1) : new Vector2(1, 1);
         rigidBody.AddForce(direccionGolpe * fuerzaGolpe);
-
         StartCoroutine(EsperarYActivarMovimiento());
     }
-   IEnumerator EsperarYActivarMovimiento()
-    {
-        //esperar antes de comprobar
-        yield return new WaitForSeconds(0.1f);
-        while (!EstaenSuelo()) {
-            yield return null;
-        }
 
+    IEnumerator EsperarYActivarMovimiento()
+    {
+        yield return new WaitForSeconds(0.1f);
+        while (!EstaEnSuelo()) yield return null;
         puedeMoverse = true;
     }
+
+    void ProcesarEntradaPC()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        {
+            Saltar();
+        }
+
+        if (Input.GetMouseButtonDown(0)) // Click izquierdo PRESIONADO
+        {
+            disparoScript.DispararSi();
+        }
+
+        if (Input.GetMouseButtonUp(0)) // Click izquierdo SOLTADO
+        {
+            disparoScript.DispararNo();
+        }
     }
+}
