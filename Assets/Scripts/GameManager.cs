@@ -9,9 +9,9 @@ public class GameManager : MonoBehaviour
     public HUD hud;
     public int PuntosTotales { get { return puntosTotales; } }
 
-    private int puntosTotales;
+    private int puntosTotales = 0;
     private int vidas;
-    private int vidasIniciales = 3; // Número inicial de vidas
+    private int vidasIniciales = 3;
 
     private void Awake()
     {
@@ -20,14 +20,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            vidas = vidasIniciales; // Inicializar vidas
+            vidas = vidasIniciales;
+            Debug.Log("GameManager iniciado correctamente.");
         }
         else
         {
+            Debug.LogWarning("Se intentó crear un GameManager duplicado, destruyéndolo.");
             Destroy(gameObject);
-            Debug.Log("Cuidado! Más de un GameManager en escena.");
         }
     }
+
 
     private void OnDestroy()
     {
@@ -39,26 +41,68 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        hud = FindObjectOfType<HUD>();
+        StartCoroutine(ActualizarHUD()); // Retrasar la asignación para evitar errores de carga
+    }
+
+    private IEnumerator ActualizarHUD()
+    {
+        yield return new WaitForSeconds(0.1f); // Breve espera para que el HUD cargue completamente
+        hud = FindObjectOfType<HUD>(); // Buscar el nuevo HUD en la escena
+
         if (hud != null)
         {
-            Debug.Log("HUD encontrado y referenciado.");
+            Debug.Log("HUD encontrado y referenciado correctamente.");
+            hud.gameManager = this;
+            hud.ActualizarPuntos(puntosTotales);
             ReiniciarVidas();
         }
         else
         {
-            Debug.LogWarning("HUD no encontrado en la escena.");
+            Debug.LogWarning("No se encontró HUD en la nueva escena.");
+        }
+    }
+
+
+    private IEnumerator ActualizarReferenciasHUD()
+    {
+        yield return new WaitForEndOfFrame(); // Esperamos un frame para asegurar que el HUD esté listo
+        hud = FindObjectOfType<HUD>(); // Se vuelve a buscar el HUD en la nueva escena
+
+        if (hud != null)
+        {
+            Debug.Log("HUD encontrado y referenciado.");
+            hud.gameManager = this;
+            hud.ActualizarPuntos(puntosTotales);
+            ReiniciarVidas();
+        }
+        else
+        {
+            Debug.LogWarning("HUD no encontrado en la nueva escena.");
         }
     }
 
     public void SumarPuntos(int puntosASumar)
     {
         puntosTotales += puntosASumar;
+        Debug.Log("Puntos sumados: " + puntosASumar + ", Total: " + puntosTotales);
+
+        if (hud == null)
+        {
+            Debug.LogWarning("HUD no asignado. Intentando encontrarlo...");
+            hud = FindObjectOfType<HUD>(); // Reasignar si se perdió la referencia
+        }
+
         if (hud != null)
         {
-            hud.ActualizarPuntos(PuntosTotales);
+            hud.ActualizarPuntos(puntosTotales);
+            Debug.Log("Se llamó a ActualizarPuntos() en el HUD.");
+        }
+        else
+        {
+            Debug.LogError("HUD sigue sin encontrarse al intentar actualizar puntos.");
         }
     }
+
 
     public void PerderVidas()
     {
@@ -66,10 +110,9 @@ public class GameManager : MonoBehaviour
 
         if (vidas <= 0)
         {
-            // Reiniciar nivel actual
             int escenaActual = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(escenaActual);
-            vidas = vidasIniciales; // Reiniciar vidas
+            vidas = vidasIniciales;
         }
         else
         {
@@ -106,5 +149,11 @@ public class GameManager : MonoBehaviour
         {
             hud.ActivarVida(i);
         }
+    }
+
+    public void CambiarEscena(int escenaIndex)
+    {
+        Debug.Log("Cambiando a la escena: " + escenaIndex);
+        SceneManager.LoadScene(escenaIndex);
     }
 }
