@@ -32,7 +32,7 @@ public class ControladroSonido : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         // Cargar los datos de volumen al iniciar el juego
-        CargarDatosAudio();
+        //CargarDatosAudio();
     }
 
     private void Start()
@@ -98,7 +98,7 @@ public class ControladroSonido : MonoBehaviour
     public void CambiarVolumen(float volume)
     {
         AudioListener.volume = volume;
-        GuardarDatosAudio();
+        //GuardarDatosAudio();
     }
 
     public void CargarDatosAudio()

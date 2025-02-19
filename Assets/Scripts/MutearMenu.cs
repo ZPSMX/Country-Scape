@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class MutearMenu : MonoBehaviour
 {
-    private bool isMuted = false;
+    private bool isMuted;
     public Button muteButton;
 
     void Start()
     {
+        // Leer el estado real del volumen al inicio
+        isMuted = AudioListener.volume == 0;
         muteButton.onClick.AddListener(ToggleMute);
     }
 
@@ -19,4 +21,3 @@ public class MutearMenu : MonoBehaviour
         AudioListener.volume = isMuted ? 0 : 1;
     }
 }
-

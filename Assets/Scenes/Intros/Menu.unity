@@ -563,7 +563,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219079813}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8f97ccd77fffb640b8fcd5f779931b5, type: 3}
   m_Name: 
@@ -572,7 +572,7 @@ MonoBehaviour:
   archivoDeGuardado: 
   datosJuego:
     posicion: {x: 0, y: 0, z: 0}
-    volumen: 0
+    volumen: 1
     escena: 
 --- !u!1 &247233986
 GameObject:
@@ -757,7 +757,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289460143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -767,8 +767,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.26533103, y: 0.38333336}
   m_AnchorMax: {x: 0.5536115, y: 0.45166668}
-  m_AnchoredPosition: {x: -165, y: -1}
-  m_SizeDelta: {x: -0.062072754, y: -5.2953033}
+  m_AnchoredPosition: {x: -165, y: 21.403822}
+  m_SizeDelta: {x: -0.062072754, y: 39.512356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289460145
 MonoBehaviour:
@@ -1027,7 +1027,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404641131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -53.21}
   m_LocalScale: {x: 1.5835, y: 1.5835, z: 1.5835}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1037,8 +1037,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.252446, y: 0.5175}
   m_AnchorMax: {x: 0.73677707, y: 0.58000004}
-  m_AnchoredPosition: {x: 417, y: -7.9187}
-  m_SizeDelta: {x: 135.7085, y: 1.9589996}
+  m_AnchoredPosition: {x: 393.2771, y: 30.550896}
+  m_SizeDelta: {x: 183.15413, y: 78.8982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &404641133
 MonoBehaviour:
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1412,7 +1412,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 219079818}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControladroSonido, Assembly-CSharp
         m_MethodName: GuardarDatosAudio
         m_Mode: 1
@@ -6057,7 +6057,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1958435578
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6495,10 +6495,10 @@ RectTransform:
   m_Father: {fileID: 289460144}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -203, y: 93}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -187.20984, y: 81.39439}
+  m_SizeDelta: {x: 742, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2145653694
 MonoBehaviour:
