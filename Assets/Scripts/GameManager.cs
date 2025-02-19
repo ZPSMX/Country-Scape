@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     private void OnDestroy()
     {
         if (Instance == this)
@@ -41,13 +40,14 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        StartCoroutine(ActualizarHUD()); // Retrasar la asignación para evitar errores de carga
+        puntosTotales = 0; // Reiniciar puntos al cargar la escena
+        StartCoroutine(ActualizarHUD());
     }
 
     private IEnumerator ActualizarHUD()
     {
-        yield return new WaitForSeconds(0.1f); // Breve espera para que el HUD cargue completamente
-        hud = FindObjectOfType<HUD>(); // Buscar el nuevo HUD en la escena
+        yield return new WaitForSeconds(0.1f);
+        hud = FindObjectOfType<HUD>();
 
         if (hud != null)
         {
@@ -62,25 +62,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    private IEnumerator ActualizarReferenciasHUD()
-    {
-        yield return new WaitForEndOfFrame(); // Esperamos un frame para asegurar que el HUD esté listo
-        hud = FindObjectOfType<HUD>(); // Se vuelve a buscar el HUD en la nueva escena
-
-        if (hud != null)
-        {
-            Debug.Log("HUD encontrado y referenciado.");
-            hud.gameManager = this;
-            hud.ActualizarPuntos(puntosTotales);
-            ReiniciarVidas();
-        }
-        else
-        {
-            Debug.LogWarning("HUD no encontrado en la nueva escena.");
-        }
-    }
-
     public void SumarPuntos(int puntosASumar)
     {
         puntosTotales += puntosASumar;
@@ -89,7 +70,7 @@ public class GameManager : MonoBehaviour
         if (hud == null)
         {
             Debug.LogWarning("HUD no asignado. Intentando encontrarlo...");
-            hud = FindObjectOfType<HUD>(); // Reasignar si se perdió la referencia
+            hud = FindObjectOfType<HUD>();
         }
 
         if (hud != null)
@@ -103,13 +84,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void PerderVidas()
     {
         vidas -= 1;
-
         if (vidas <= 0)
         {
+            puntosTotales = 0; // Reiniciar los puntos al perder todas las vidas
+
+            if (hud != null)
+            {
+                hud.ActualizarPuntos(puntosTotales);
+            }
+
             int escenaActual = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(escenaActual);
             vidas = vidasIniciales;

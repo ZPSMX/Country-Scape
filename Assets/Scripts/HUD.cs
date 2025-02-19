@@ -15,33 +15,16 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(EsperarGameManager()); // Esperar para garantizar la inicialización
+        StartCoroutine(EsperarGameManager());
     }
 
     private IEnumerator EsperarGameManager()
     {
-        yield return new WaitUntil(() => GameManager.Instance != null); // Espera hasta que GameManager esté listo
+        yield return new WaitUntil(() => GameManager.Instance != null);
         gameManager = GameManager.Instance;
-        gameManager.hud = this; // Vincula el HUD al GameManager
+        gameManager.hud = this;
         ActualizarPuntos(gameManager.PuntosTotales);
         Debug.Log("HUD correctamente inicializado con puntuación: " + gameManager.PuntosTotales);
-    }
-
-
-    private IEnumerator AsignarGameManager()
-    {
-        yield return new WaitForEndOfFrame(); // Esperar al siguiente frame para evitar problemas de carga
-        if (GameManager.Instance != null)
-        {
-            gameManager = GameManager.Instance;
-            gameManager.hud = this; // Asignamos el HUD al GameManager nuevamente
-            ActualizarPuntos(gameManager.PuntosTotales);
-            Debug.Log("HUD inicializado con puntuación: " + gameManager.PuntosTotales);
-        }
-        else
-        {
-            Debug.LogError("GameManager no encontrado en Start() de HUD.");
-        }
     }
 
     private void Update()
