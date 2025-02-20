@@ -9,20 +9,19 @@ public class Disparo : MonoBehaviour
     [Header("GameObject que controla el disparo")]
     [SerializeField] private Transform controladorDisparo;
 
-
-    //sprites balas
+    // Sprites balas
     [Header("Prefabs Balas")]
     [SerializeField] private GameObject bala;
     [SerializeField] private GameObject balaEscopeta;
     [SerializeField] private GameObject balaMetralleta;
 
-    // sprites armas
+    // Sprites armas
     [Header("GameObjects SpriteArmas")]
     [SerializeField] GameObject pistola;
     [SerializeField] GameObject metralleta;
     [SerializeField] GameObject escopeta;
 
-    // sprites hud armas
+    // Sprites HUD armas
     [Header("Sprites de armas HUD")]
     [SerializeField] GameObject pistolaHUD;
     [SerializeField] GameObject metralletaHUD;
@@ -36,10 +35,8 @@ public class Disparo : MonoBehaviour
 
     public float ContadorBalaEscopeta = 15f;
     public float ContadorBalaMetralleta = 120f;
-    
-    [Header("Otros")]
 
-    //box colider sprite arma consumible
+    [Header("Otros")]
     public BoxCollider2D consumible;
 
     public Animator animatorPistola;
@@ -51,29 +48,27 @@ public class Disparo : MonoBehaviour
     [Header("Frecuencia de Disparo de la metralleta")]
     public float frecuenciaDisparo;
 
-
     [Header("Sonidos")]
     [SerializeField] private AudioClip pistolaClip;
     [SerializeField] private AudioClip EscopetaClip;
+    [SerializeField] private AudioClip RifleClip;
 
     private void Update()
     {
         consumible = GetComponent<BoxCollider2D>();
         armasActivas();
-        
-
     }
 
-    /**deteccion por colision de que objeto se esta colisionando y se aplica el cambio
-    de sprite y desactivado de los otros en escena**/
+    /** Detección por colisión de qué objeto se está colisionando y se aplica el cambio 
+     * de sprite y desactivado de los otros en escena **/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "M4")
         {
-            metralleta.SetActive(true) ;
+            metralleta.SetActive(true);
             pistola.SetActive(false);
             escopeta.SetActive(false);
-            
+
             metralletaHUD.SetActive(true);
             pistolaHUD.SetActive(false);
             escopetaHUD.SetActive(false);
@@ -89,121 +84,103 @@ public class Disparo : MonoBehaviour
             escopetaHUD.SetActive(true);
         }
     }
-    //funcion boton disparo
+
+    // Función botón disparo
     public void DispararSi()
     {
-        //condicion si boton de disparo presionado se desencadena funcion de disparo
-        //con parametros de la bala
         disparoActivo = true;
-        //condicion si la pistola esta activa o la arma que se selecciono llamara al tipo de Gameobject bala que se solicita
-        if (disparoActivo == true && pistola.activeSelf)
+
+        // Disparo con pistola
+        if (pistola.activeSelf)
         {
-            //instancia de cada gameobject de bala con su propio dano definidos en el inspector
             Instantiate(bala, controladorDisparo.position, controladorDisparo.rotation);
             animatorPistola.SetBool("Disparar", true);
             restarbalas.SetTrigger("RestarSi");
             ControladroSonido.Instance.EjecutarSonido(pistolaClip);
-
-            //agregar a las animaciones el parametro trigger para desactivar inmediatamente al finalizar la animacion.
         }
-
-        else if (disparoActivo == true && metralleta.activeSelf)
+        // Disparo automático con metralleta
+        else if (metralleta.activeSelf)
         {
-
             InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
-            //restarbalas.SetTrigger("RestarSi");
-           
-
-
-
+            InvokeRepeating("ReproducirSonidoRifle", 0f, frecuenciaDisparo);
         }
-        else if (disparoActivo == true && escopeta.activeSelf)
+        // Disparo con escopeta
+        else if (escopeta.activeSelf)
         {
             Instantiate(balaEscopeta, controladorDisparo.position, controladorDisparo.rotation);
             animatorEscopeta.SetTrigger("Disparo");
             ContadorBalaEscopeta--;
             restarbalas.SetTrigger("RestarSi");
             ControladroSonido.Instance.EjecutarSonido(EscopetaClip);
-
-
         }
     }
 
     public void DispararNo()
     {
         disparoActivo = false;
-        if (disparoActivo == false )
+
+        // Si se deja de disparar, cancelar la repetición de metralleta y su sonido
+        if (!disparoActivo)
         {
             animatorPistola.SetBool("Disparar", false);
             CancelInvoke("metralletaOn");
-            
-            
+            CancelInvoke("ReproducirSonidoRifle");
         }
     }
 
-    //metodo aparte para definir disparo en automatico de metralleta y el tiempo en que tarda salir cada bala del cañon
+    // Método aparte para definir disparo en automático de metralleta y el tiempo en que tarda en salir cada bala del cañón
     void metralletaOn()
     {
         Instantiate(balaMetralleta, controladorDisparo.position, controladorDisparo.rotation);
         restarbalas.SetTrigger("RestarSi");
         animatorMetralleta.SetTrigger("Disparar");
         ContadorBalaMetralleta--;
-        
     }
 
-   
-
+    // Método para reproducir el sonido de la metralleta en bucle
+    void ReproducirSonidoRifle()
+    {
+        if (ControladroSonido.Instance != null)
+        {
+            ControladroSonido.Instance.EjecutarSonido(RifleClip);
+        }
+    }
 
     public void armasActivas()
     {
         if (Pistola.activeSelf)
         {
-
             Textobalas.text = "999";
         }
         else if (Metralleta.activeSelf)
         {
-
-            //se pasa valores de float contador Escopeta a string para verlo en hud
+            // Se pasa valores de float contador Escopeta a string para verlo en HUD
             Textobalas.text = ContadorBalaMetralleta.ToString();
-            // condicion si contador es 0 entonces volver a pistola y reiniciar valores de balasEscopeta
+            // Condición si contador es 0 entonces volver a pistola y reiniciar valores de balasEscopeta
             if (ContadorBalaMetralleta == 0)
             {
-                //se desactiva la arma actual y se activa pistola de mano infinita
                 pistola.SetActive(true);
                 metralleta.SetActive(false);
-                //reinicio de contador balas
                 pistolaHUD.SetActive(true);
                 metralletaHUD.SetActive(false);
                 CancelInvoke("metralletaOn");
+                CancelInvoke("ReproducirSonidoRifle");
                 ContadorBalaMetralleta = 120;
-
-
             }
-
         }
         else if (Escopeta.activeSelf)
         {
-            //se pasa valores de float contador Escopeta a string para verlo en hud
+            // Se pasa valores de float contador Escopeta a string para verlo en HUD
             Textobalas.text = ContadorBalaEscopeta.ToString();
-            // condicion si contador es 0 entonces volver a pistola y reiniciar valores de balasEscopeta
-            if(ContadorBalaEscopeta == 0)
+            // Condición si contador es 0 entonces volver a pistola y reiniciar valores de balasEscopeta
+            if (ContadorBalaEscopeta == 0)
             {
-                //se desactiva la arma actual y se activa pistola de mano infinita
                 pistola.SetActive(true);
                 escopeta.SetActive(false);
-                //reinicio de contador balas
                 pistolaHUD.SetActive(true);
                 escopetaHUD.SetActive(false);
                 ContadorBalaEscopeta = 15;
-
-                
             }
         }
-
-
     }
 }
-
-
-
