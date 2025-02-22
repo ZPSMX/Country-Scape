@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Disparo : MonoBehaviour
@@ -17,20 +16,20 @@ public class Disparo : MonoBehaviour
 
     // Sprites armas
     [Header("GameObjects SpriteArmas")]
-    [SerializeField] GameObject pistola;
-    [SerializeField] GameObject metralleta;
-    [SerializeField] GameObject escopeta;
+    [SerializeField] private GameObject pistola;
+    [SerializeField] private GameObject metralleta;
+    [SerializeField] private GameObject escopeta;
 
     // Sprites HUD armas
     [Header("Sprites de armas HUD")]
-    [SerializeField] GameObject pistolaHUD;
-    [SerializeField] GameObject metralletaHUD;
-    [SerializeField] GameObject escopetaHUD;
+    [SerializeField] private GameObject pistolaHUD;
+    [SerializeField] private GameObject metralletaHUD;
+    [SerializeField] private GameObject escopetaHUD;
 
     [Header("----Sprites Armas HUD----")]
-    [SerializeField] GameObject Pistola;
-    [SerializeField] GameObject Metralleta;
-    [SerializeField] GameObject Escopeta;
+    [SerializeField] private GameObject Pistola;
+    [SerializeField] private GameObject Metralleta;
+    [SerializeField] private GameObject Escopeta;
     public TextMeshProUGUI Textobalas;
 
     public float ContadorBalaEscopeta = 15f;
@@ -49,9 +48,22 @@ public class Disparo : MonoBehaviour
     public float frecuenciaDisparo;
 
     [Header("Sonidos")]
-    [SerializeField] private AudioClip pistolaClip;
-    [SerializeField] private AudioClip EscopetaClip;
-    [SerializeField] private AudioClip RifleClip;
+    private AudioClip pistolaClip;
+    private AudioClip escopetaClip;
+    private AudioClip rifleClip;
+
+    private void Start()
+    {
+        // Cargar los clips de audio automáticamente desde Resources/Sonidos/
+        pistolaClip = Resources.Load<AudioClip>("Sonidos/Pistola");
+        escopetaClip = Resources.Load<AudioClip>("Sonidos/Escopeta");
+        rifleClip = Resources.Load<AudioClip>("Sonidos/Rifle");
+
+        // Verificación de que los clips se han cargado correctamente
+        if (pistolaClip == null) Debug.LogError("No se pudo cargar el sonido Pistola. Verifica la ruta.");
+        if (escopetaClip == null) Debug.LogError("No se pudo cargar el sonido Escopeta. Verifica la ruta.");
+        if (rifleClip == null) Debug.LogError("No se pudo cargar el sonido Rifle. Verifica la ruta.");
+    }
 
     private void Update()
     {
@@ -63,7 +75,7 @@ public class Disparo : MonoBehaviour
      * de sprite y desactivado de los otros en escena **/
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "M4")
+        if (collision.CompareTag("M4"))
         {
             metralleta.SetActive(true);
             pistola.SetActive(false);
@@ -73,7 +85,7 @@ public class Disparo : MonoBehaviour
             pistolaHUD.SetActive(false);
             escopetaHUD.SetActive(false);
         }
-        else if (collision.gameObject.tag == "ShotGun")
+        else if (collision.CompareTag("ShotGun"))
         {
             escopeta.SetActive(true);
             pistola.SetActive(false);
@@ -101,8 +113,8 @@ public class Disparo : MonoBehaviour
         // Disparo automático con metralleta
         else if (metralleta.activeSelf)
         {
-            InvokeRepeating("metralletaOn", 0f, frecuenciaDisparo);
-            InvokeRepeating("ReproducirSonidoRifle", 0f, frecuenciaDisparo);
+            InvokeRepeating(nameof(metralletaOn), 0f, frecuenciaDisparo);
+            InvokeRepeating(nameof(ReproducirSonidoRifle), 0f, frecuenciaDisparo);
         }
         // Disparo con escopeta
         else if (escopeta.activeSelf)
@@ -111,7 +123,7 @@ public class Disparo : MonoBehaviour
             animatorEscopeta.SetTrigger("Disparo");
             ContadorBalaEscopeta--;
             restarbalas.SetTrigger("RestarSi");
-            ControladroSonido.Instance.EjecutarSonido(EscopetaClip);
+            ControladroSonido.Instance.EjecutarSonido(escopetaClip);
         }
     }
 
@@ -123,8 +135,8 @@ public class Disparo : MonoBehaviour
         if (!disparoActivo)
         {
             animatorPistola.SetBool("Disparar", false);
-            CancelInvoke("metralletaOn");
-            CancelInvoke("ReproducirSonidoRifle");
+            CancelInvoke(nameof(metralletaOn));
+            CancelInvoke(nameof(ReproducirSonidoRifle));
         }
     }
 
@@ -142,7 +154,7 @@ public class Disparo : MonoBehaviour
     {
         if (ControladroSonido.Instance != null)
         {
-            ControladroSonido.Instance.EjecutarSonido(RifleClip);
+            ControladroSonido.Instance.EjecutarSonido(rifleClip);
         }
     }
 
@@ -163,8 +175,8 @@ public class Disparo : MonoBehaviour
                 metralleta.SetActive(false);
                 pistolaHUD.SetActive(true);
                 metralletaHUD.SetActive(false);
-                CancelInvoke("metralletaOn");
-                CancelInvoke("ReproducirSonidoRifle");
+                CancelInvoke(nameof(metralletaOn));
+                CancelInvoke(nameof(ReproducirSonidoRifle));
                 ContadorBalaMetralleta = 120;
             }
         }
